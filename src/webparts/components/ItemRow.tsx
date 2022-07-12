@@ -8,6 +8,7 @@ interface Props {
 
 export const ItemRow: React.FC<Props> = ({ item }) => {
   const [amount, setAmount] = useState(0);
+  const [total, setTotal] = useState(item.total);
 
   const handleAmountDecrease = () => {
     let min = 0;
@@ -27,6 +28,8 @@ export const ItemRow: React.FC<Props> = ({ item }) => {
     }
   };
 
+  const itemTotal = amount * item.price;
+
   return (
     <div>
       <h1>{item.name}</h1>
@@ -35,7 +38,9 @@ export const ItemRow: React.FC<Props> = ({ item }) => {
       </p>
       <Button onClick={() => handleAmountDecrease()}>-</Button>
       <Button onClick={() => handleAmountIncrease()}>+</Button>
-      <p>Total: £{item.price * amount}</p>
+      <p>Total: £{itemTotal}</p>
+      {item.id}
+      <p>{item.total}</p>
     </div>
   );
 };
