@@ -3,5 +3,5 @@ type Item = {
   name: string;
   price: number;
   amount?: number;
-  total?: number;
+  total?: any;
 };
