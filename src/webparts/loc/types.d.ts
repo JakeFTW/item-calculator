@@ -3,6 +3,6 @@ type Item = {
   name: string;
   price: number;
   amount: number;
-  total: any;
+  total: number;
   style?: string;
 };

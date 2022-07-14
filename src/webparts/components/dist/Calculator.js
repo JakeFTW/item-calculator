@@ -64,7 +64,7 @@ function Calculator() {
         newItems[index] = item;
         setItems(newItems);
     };
-    var todoItems = items.map(function (items) { return (react_1["default"].createElement(ItemRow_1.ItemRow, { key: items.id, item: items, handleAmountDecrease: function () { return handleAmountDecrease(items.id, items.amount); }, handleAmountIncrease: function () { return handleAmountIncrease(items.id, items.amount); } })); });
+    var todoItems = items.map(function (items) { return (react_1["default"].createElement(ItemRow_1.ItemRow, { key: items.id, item: items, handleAmountDecrease: function () { return handleAmountDecrease(items.id, items.amount); }, handleAmountIncrease: function () { return handleAmountIncrease(items.id, items.amount); }, handleUpdate: handleUpdate })); });
     var groupTotal = items.reduce(function (total, currentValue) { return (total = total + currentValue.total); }, 0);
     return (react_1["default"].createElement("div", null,
         react_1["default"].createElement("div", null, todoItems),

@@ -64,6 +64,7 @@ export default function Calculator() {
       item={items}
       handleAmountDecrease={() => handleAmountDecrease(items.id, items.amount)}
       handleAmountIncrease={() => handleAmountIncrease(items.id, items.amount)}
+      handleUpdate={handleUpdate}
     />
   ));
 
