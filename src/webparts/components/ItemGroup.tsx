@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Item } from "./Item";
+import TotalBar from "./TotalBar";
 
 // array of items to be displayed in the list
 const initialItems: Item[] = [
@@ -49,9 +50,9 @@ export default function ItemGroup() {
   );
 
   return (
-    <div>
+    <>
       <div>{itemsGroup}</div>
-      <h1>Total: £{groupTotal}</h1>
-    </div>
+      <TotalBar groupTotal={groupTotal} />
+    </>
   );
 }

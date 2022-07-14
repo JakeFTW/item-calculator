@@ -10,6 +10,7 @@ exports.__esModule = true;
 var react_1 = require("react");
 var react_2 = require("react");
 var Item_1 = require("./Item");
+var TotalBar_1 = require("./TotalBar");
 // array of items to be displayed in the list
 var initialItems = [
     {
@@ -46,10 +47,8 @@ function ItemGroup() {
     };
     var itemsGroup = items.map(function (items) { return (react_1["default"].createElement(Item_1.Item, { key: items.id, item: items, handleUpdate: handleUpdate })); });
     var groupTotal = items.reduce(function (total, currentValue) { return (total = total + currentValue.total); }, 0);
-    return (react_1["default"].createElement("div", null,
+    return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement("div", null, itemsGroup),
-        react_1["default"].createElement("h1", null,
-            "Total: \u00A3",
-            groupTotal)));
+        react_1["default"].createElement(TotalBar_1["default"], { groupTotal: groupTotal })));
 }
 exports["default"] = ItemGroup;

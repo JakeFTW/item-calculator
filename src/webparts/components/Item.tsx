@@ -1,7 +1,10 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
-import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 interface Props {
   item: Item;
@@ -39,39 +42,46 @@ export const Item: React.FC<Props> = ({ item, handleUpdate }) => {
   };
 
   return (
-    <div>
-      <h1>{item.name}</h1>
-      <p>
-        Price: £{item.price} <br /> Amount: {item.amount}
-      </p>
-      {item.style === "button" ? (
-        <div>
-          <Button onClick={() => handleAmountDecrease(item.id, item.amount)}>
-            -
-          </Button>
-          <Button onClick={() => handleAmountIncrease(item.id, item.amount)}>
-            +
-          </Button>
-        </div>
-      ) : null}
-      {item.style === "slider" ? (
-        <div>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs>
-              <Slider
-                aria-label="Item amount"
-                step={1}
-                max={16}
-                valueLabelDisplay="on"
-                value={sliderValue}
-                onChange={handleSliderChange}
-                marks
-              />
-            </Grid>
-          </Grid>
-        </div>
-      ) : null}
-      <p>Total: £{item.total}</p>
-    </div>
+    <Card sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <CardContent sx={{ flex: "1 0 auto", width: 500 }}>
+          <Typography component="div" variant="h5">
+            {item.name}
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
+            component="div"
+          >
+            Price: £{item.price} <br /> Amount: {item.amount}
+          </Typography>
+        </CardContent>
+        {item.style === "button" ? (
+          <div>
+            <Button onClick={() => handleAmountDecrease(item.id, item.amount)}>
+              -
+            </Button>
+            <Button onClick={() => handleAmountIncrease(item.id, item.amount)}>
+              +
+            </Button>
+          </div>
+        ) : null}
+        {item.style === "slider" ? (
+          <div>
+            <Slider
+              aria-label="Item amount"
+              step={1}
+              max={16}
+              valueLabelDisplay="on"
+              value={sliderValue}
+              onChange={handleSliderChange}
+              marks
+              sx={{ mx: 2, mt: 2 }}
+            />
+          </div>
+        ) : null}
+        <p>Total: £{item.total}</p>
+      </Box>
+    </Card>
   );
 };
