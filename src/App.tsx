@@ -1,11 +1,11 @@
 import React from "react";
-import Calculator from "./webparts/components/Calculator";
+import ItemGroup from "./webparts/components/ItemGroup";
 import "./App.css";
 
 function App() {
   return (
     <div>
-      <Calculator />
+      <ItemGroup />
     </div>
   );
 }

@@ -1,23 +1,33 @@
 import React from "react";
-import { useState } from "react";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
-import Input from "@mui/material/Input";
 import Grid from "@mui/material/Grid";
 
 interface Props {
   item: Item;
-  handleAmountDecrease: any;
-  handleAmountIncrease: any;
   handleUpdate: any;
 }
 
-export const ItemRow: React.FC<Props> = ({
-  item,
-  handleAmountDecrease,
-  handleAmountIncrease,
-  handleUpdate,
-}) => {
+export const Item: React.FC<Props> = ({ item, handleUpdate }) => {
+  const handleAmountDecrease = (index: number, amount: number) => {
+    let min: number = 0;
+    if (amount <= min) {
+      console.log("Already at min: 0");
+    } else {
+      let newAmount: number = amount - 1;
+      handleUpdate(index, newAmount);
+    }
+  };
+  const handleAmountIncrease = (index: number, amount: number) => {
+    let max: number = 16;
+    if (amount >= max) {
+      console.log("Already at max: 16");
+    } else {
+      let newAmount: number = amount + 1;
+      handleUpdate(index, newAmount);
+    }
+  };
+
   // slider state
   const [sliderValue, setSliderValue] = React.useState<number | Array<number>>(
     0
@@ -36,8 +46,12 @@ export const ItemRow: React.FC<Props> = ({
       </p>
       {item.style === "button" ? (
         <div>
-          <Button onClick={handleAmountDecrease}>-</Button>
-          <Button onClick={handleAmountIncrease}>+</Button>
+          <Button onClick={() => handleAmountDecrease(item.id, item.amount)}>
+            -
+          </Button>
+          <Button onClick={() => handleAmountIncrease(item.id, item.amount)}>
+            +
+          </Button>
         </div>
       ) : null}
       {item.style === "slider" ? (

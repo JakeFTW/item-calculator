@@ -9,7 +9,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var react_2 = require("react");
-var ItemRow_1 = require("./ItemRow");
+var Item_1 = require("./Item");
 // array of items to be displayed in the list
 var initialItems = [
     {
@@ -29,28 +29,8 @@ var initialItems = [
         style: "button"
     },
 ];
-function Calculator() {
+function ItemGroup() {
     var _a = react_2.useState(initialItems), items = _a[0], setItems = _a[1];
-    var handleAmountDecrease = function (index, amount) {
-        var min = 0;
-        if (amount <= min) {
-            console.log("Already at min: 0");
-        }
-        else {
-            var newAmount = amount - 1;
-            handleUpdate(index, newAmount);
-        }
-    };
-    var handleAmountIncrease = function (index, amount) {
-        var max = 16;
-        if (amount >= max) {
-            console.log("Already at max: 16");
-        }
-        else {
-            var newAmount = amount + 1;
-            handleUpdate(index, newAmount);
-        }
-    };
     var handleUpdate = function (index, amount) {
         var item = {
             id: items[index].id,
@@ -64,12 +44,12 @@ function Calculator() {
         newItems[index] = item;
         setItems(newItems);
     };
-    var todoItems = items.map(function (items) { return (react_1["default"].createElement(ItemRow_1.ItemRow, { key: items.id, item: items, handleAmountDecrease: function () { return handleAmountDecrease(items.id, items.amount); }, handleAmountIncrease: function () { return handleAmountIncrease(items.id, items.amount); }, handleUpdate: handleUpdate })); });
+    var itemsGroup = items.map(function (items) { return (react_1["default"].createElement(Item_1.Item, { key: items.id, item: items, handleUpdate: handleUpdate })); });
     var groupTotal = items.reduce(function (total, currentValue) { return (total = total + currentValue.total); }, 0);
     return (react_1["default"].createElement("div", null,
-        react_1["default"].createElement("div", null, todoItems),
+        react_1["default"].createElement("div", null, itemsGroup),
         react_1["default"].createElement("h1", null,
             "Total: \u00A3",
             groupTotal)));
 }
-exports["default"] = Calculator;
+exports["default"] = ItemGroup;

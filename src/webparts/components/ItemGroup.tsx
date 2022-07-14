@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { ItemRow } from "./ItemRow";
+import { Item } from "./Item";
 
 // array of items to be displayed in the list
 const initialItems: Item[] = [
@@ -22,27 +22,8 @@ const initialItems: Item[] = [
   },
 ];
 
-export default function Calculator() {
+export default function ItemGroup() {
   const [items, setItems] = useState(initialItems);
-
-  const handleAmountDecrease = (index: number, amount: number) => {
-    let min: number = 0;
-    if (amount <= min) {
-      console.log("Already at min: 0");
-    } else {
-      let newAmount: number = amount - 1;
-      handleUpdate(index, newAmount);
-    }
-  };
-  const handleAmountIncrease = (index: number, amount: number) => {
-    let max: number = 16;
-    if (amount >= max) {
-      console.log("Already at max: 16");
-    } else {
-      let newAmount: number = amount + 1;
-      handleUpdate(index, newAmount);
-    }
-  };
 
   const handleUpdate = (index: any, amount: any) => {
     const item: Item = {
@@ -58,14 +39,8 @@ export default function Calculator() {
     setItems(newItems);
   };
 
-  const todoItems = items.map((items: any) => (
-    <ItemRow
-      key={items.id}
-      item={items}
-      handleAmountDecrease={() => handleAmountDecrease(items.id, items.amount)}
-      handleAmountIncrease={() => handleAmountIncrease(items.id, items.amount)}
-      handleUpdate={handleUpdate}
-    />
+  const itemsGroup = items.map((items: any) => (
+    <Item key={items.id} item={items} handleUpdate={handleUpdate} />
   ));
 
   const groupTotal = items.reduce(
@@ -75,7 +50,7 @@ export default function Calculator() {
 
   return (
     <div>
-      <div>{todoItems}</div>
+      <div>{itemsGroup}</div>
       <h1>Total: £{groupTotal}</h1>
     </div>
   );

@@ -1,12 +1,32 @@
 "use strict";
 exports.__esModule = true;
-exports.ItemRow = void 0;
+exports.Item = void 0;
 var react_1 = require("react");
 var Button_1 = require("@mui/material/Button");
 var Slider_1 = require("@mui/material/Slider");
 var Grid_1 = require("@mui/material/Grid");
-exports.ItemRow = function (_a) {
-    var item = _a.item, handleAmountDecrease = _a.handleAmountDecrease, handleAmountIncrease = _a.handleAmountIncrease, handleUpdate = _a.handleUpdate;
+exports.Item = function (_a) {
+    var item = _a.item, handleUpdate = _a.handleUpdate;
+    var handleAmountDecrease = function (index, amount) {
+        var min = 0;
+        if (amount <= min) {
+            console.log("Already at min: 0");
+        }
+        else {
+            var newAmount = amount - 1;
+            handleUpdate(index, newAmount);
+        }
+    };
+    var handleAmountIncrease = function (index, amount) {
+        var max = 16;
+        if (amount >= max) {
+            console.log("Already at max: 16");
+        }
+        else {
+            var newAmount = amount + 1;
+            handleUpdate(index, newAmount);
+        }
+    };
     // slider state
     var _b = react_1["default"].useState(0), sliderValue = _b[0], setSliderValue = _b[1];
     var handleSliderChange = function (event, newValue) {
@@ -23,8 +43,8 @@ exports.ItemRow = function (_a) {
             " Amount: ",
             item.amount),
         item.style === "button" ? (react_1["default"].createElement("div", null,
-            react_1["default"].createElement(Button_1["default"], { onClick: handleAmountDecrease }, "-"),
-            react_1["default"].createElement(Button_1["default"], { onClick: handleAmountIncrease }, "+"))) : null,
+            react_1["default"].createElement(Button_1["default"], { onClick: function () { return handleAmountDecrease(item.id, item.amount); } }, "-"),
+            react_1["default"].createElement(Button_1["default"], { onClick: function () { return handleAmountIncrease(item.id, item.amount); } }, "+"))) : null,
         item.style === "slider" ? (react_1["default"].createElement("div", null,
             react_1["default"].createElement(Grid_1["default"], { container: true, spacing: 2, alignItems: "center" },
                 react_1["default"].createElement(Grid_1["default"], { item: true, xs: true },
