@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Item } from "./Item";
 import TotalBar from "./TotalBar";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 // array of items to be displayed in the list
 const initialItems: Item[] = [
@@ -16,6 +18,14 @@ const initialItems: Item[] = [
   {
     id: 1,
     name: "Button",
+    price: 150,
+    amount: 0,
+    total: 0,
+    style: "button",
+  },
+  {
+    id: 2,
+    name: "Button 2",
     price: 150,
     amount: 0,
     total: 0,
@@ -41,7 +51,9 @@ export default function ItemGroup() {
   };
 
   const itemsGroup = items.map((items: any) => (
-    <Item key={items.id} item={items} handleUpdate={handleUpdate} />
+    <Grid item xs={12} sm={6} md={4} xl={3}>
+      <Item key={items.id} item={items} handleUpdate={handleUpdate} />
+    </Grid>
   ));
 
   const groupTotal = items.reduce(
@@ -51,7 +63,11 @@ export default function ItemGroup() {
 
   return (
     <>
-      <div>{itemsGroup}</div>
+      <Box sx={{ flexGrow: 1, padding: 2 }}>
+        <Grid container spacing={2}>
+          {itemsGroup}
+        </Grid>
+      </Box>
       <TotalBar groupTotal={groupTotal} />
     </>
   );
