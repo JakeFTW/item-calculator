@@ -86,7 +86,6 @@ export const Item: React.FC<Props> = ({ item, handleUpdate }) => {
               <ButtonGroup
                 variant="contained"
                 aria-label="outlined primary button group"
-                size="small"
               >
                 <Button
                   onClick={() => handleAmountDecrease(item.id, item.amount)}

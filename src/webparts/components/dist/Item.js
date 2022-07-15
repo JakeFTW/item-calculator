@@ -71,7 +71,7 @@ exports.Item = function (_a) {
                         "Total: \u00A3",
                         item.total)),
                 react_1["default"].createElement(Grid_1["default"], { item: true, xs: 12, sm: 12, md: 12 },
-                    item.style === "button" ? (react_1["default"].createElement(ButtonGroup_1["default"], { variant: "contained", "aria-label": "outlined primary button group", size: "small" },
+                    item.style === "button" ? (react_1["default"].createElement(ButtonGroup_1["default"], { variant: "contained", "aria-label": "outlined primary button group" },
                         react_1["default"].createElement(Button_1["default"], { onClick: function () { return handleAmountDecrease(item.id, item.amount); }, variant: "outlined" }, "-"),
                         react_1["default"].createElement(Button_1["default"], { onClick: function () { return handleAmountIncrease(item.id, item.amount); } }, "+"))) : null,
                     item.style === "slider" ? (react_1["default"].createElement(Slider_1["default"], { "aria-label": "Item amount", step: 1, max: 16, valueLabelDisplay: "auto", value: sliderValue, onChange: handleSliderChange, marks: true, sx: { width: "95%", ml: 1 } })) : null)))));
