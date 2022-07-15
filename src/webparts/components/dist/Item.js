@@ -25,7 +25,7 @@ var Paper_1 = require("@mui/material/Paper");
 var ButtonGroup_1 = require("@mui/material/ButtonGroup");
 var Card = styles_1.styled(Paper_1["default"])(function (_a) {
     var theme = _a.theme;
-    return (__assign(__assign({ backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff" }, theme.typography.body2), { padding: theme.spacing(1), color: theme.palette.text.secondary }));
+    return (__assign(__assign({ backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff" }, theme.typography.body2), { padding: theme.spacing(1) }));
 });
 exports.Item = function (_a) {
     var item = _a.item, handleUpdate = _a.handleUpdate;
@@ -49,18 +49,24 @@ exports.Item = function (_a) {
             handleUpdate(index, newAmount);
         }
     };
+    var handleDelete = function (index) {
+        handleUpdate(index, 0, true);
+    };
     // slider state
-    var _b = react_1["default"].useState(0), sliderValue = _b[0], setSliderValue = _b[1];
+    var _b = react_1["default"].useState(item.amount), sliderValue = _b[0], setSliderValue = _b[1];
     var handleSliderChange = function (event, newValue) {
         setSliderValue(newValue);
         handleUpdate(item.id, sliderValue);
+    };
+    var handleChange = function () {
+        setSliderValue(item.amount);
     };
     return (react_1["default"].createElement(Box_1["default"], { sx: { flexGrow: 1 } },
         react_1["default"].createElement(Card, null,
             react_1["default"].createElement(Grid_1["default"], { container: true, spacing: 1 },
                 react_1["default"].createElement(Grid_1["default"], { item: true, xs: 8, sm: 8, md: 8 },
                     react_1["default"].createElement(Typography_1["default"], { component: "div", variant: "h6" }, item.name),
-                    react_1["default"].createElement(Typography_1["default"], { variant: "subtitle2", color: "text.secondary", component: "div" },
+                    react_1["default"].createElement(Typography_1["default"], { variant: "subtitle2", color: "text.secondary", component: "div", onChange: handleChange },
                         "Quantity: ",
                         item.amount)),
                 react_1["default"].createElement(Grid_1["default"], { item: true, xs: 4, sm: 4, md: 4 },
@@ -74,5 +80,6 @@ exports.Item = function (_a) {
                     item.style === "button" ? (react_1["default"].createElement(ButtonGroup_1["default"], { variant: "contained", "aria-label": "outlined primary button group" },
                         react_1["default"].createElement(Button_1["default"], { onClick: function () { return handleAmountDecrease(item.id, item.amount); }, variant: "outlined" }, "-"),
                         react_1["default"].createElement(Button_1["default"], { onClick: function () { return handleAmountIncrease(item.id, item.amount); } }, "+"))) : null,
-                    item.style === "slider" ? (react_1["default"].createElement(Slider_1["default"], { "aria-label": "Item amount", step: 1, max: 16, valueLabelDisplay: "auto", value: sliderValue, onChange: handleSliderChange, marks: true, sx: { width: "95%", ml: 1 } })) : null)))));
+                    item.style === "slider" ? (react_1["default"].createElement(Slider_1["default"], { "aria-label": "Item amount", step: 1, max: 16, valueLabelDisplay: "auto", value: sliderValue, onChange: handleSliderChange, marks: true, sx: { width: "95%", ml: 1 } })) : null),
+                react_1["default"].createElement(Button_1["default"], { onClick: function () { return handleDelete(item.id); } }, "Delete")))));
 };

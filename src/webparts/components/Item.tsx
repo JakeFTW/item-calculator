@@ -19,7 +19,7 @@ const Card = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  color: theme.palette.text.secondary,
+  // color: theme.palette.text.secondary,
 }));
 
 export const Item: React.FC<Props> = ({ item, handleUpdate }) => {
@@ -42,14 +42,22 @@ export const Item: React.FC<Props> = ({ item, handleUpdate }) => {
     }
   };
 
+  const handleDelete = (index: number) => {
+    handleUpdate(index, 0, true);
+  };
+
   // slider state
   const [sliderValue, setSliderValue] = React.useState<number | Array<number>>(
-    0
+    item.amount
   );
 
   const handleSliderChange = (event: Event, newValue: number | number[]) => {
     setSliderValue(newValue);
     handleUpdate(item.id, sliderValue);
+  };
+
+  const handleChange = () => {
+    setSliderValue(item.amount);
   };
 
   return (
@@ -64,6 +72,7 @@ export const Item: React.FC<Props> = ({ item, handleUpdate }) => {
               variant="subtitle2"
               color="text.secondary"
               component="div"
+              onChange={handleChange}
             >
               Quantity: {item.amount}
             </Typography>
@@ -113,6 +122,7 @@ export const Item: React.FC<Props> = ({ item, handleUpdate }) => {
               />
             ) : null}
           </Grid>
+          <Button onClick={() => handleDelete(item.id)}>Delete</Button>
           {/* <Grid item xs={12} sm={12} md={12}>
             <Typography
               variant="subtitle1"

@@ -6,4 +6,5 @@ type Item = {
   amount: number;
   total: number;
   style?: string;
+  display: boolean;
 };
