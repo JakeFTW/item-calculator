@@ -34,12 +34,32 @@ var initialItems = [
         total: 0,
         style: "slider",
         category: "cat1",
-        display: false
+        display: true
     },
     {
         id: 2,
         name: "Item 3",
+        price: 200,
+        amount: 0,
+        total: 0,
+        style: "slider",
+        category: "cat1",
+        display: true
+    },
+    {
+        id: 3,
+        name: "Item 4",
         price: 350,
+        amount: 0,
+        total: 0,
+        style: "button",
+        category: "cat2",
+        display: true
+    },
+    {
+        id: 4,
+        name: "Item 5",
+        price: 400,
         amount: 0,
         total: 0,
         style: "button",
