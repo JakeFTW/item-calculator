@@ -9,10 +9,18 @@ var Fab_1 = require("@mui/material/Fab");
 var IconButton_1 = require("@mui/material/IconButton");
 var Menu_1 = require("@mui/icons-material/Menu");
 var MoreVert_1 = require("@mui/icons-material/MoreVert");
-var Add_1 = require("@mui/icons-material/Add");
 var Typography_1 = require("@mui/material/Typography");
+var AddMenu_1 = require("./AddMenu");
 function TotalBar(props) {
     var StyledFab = styles_1.styled(Fab_1["default"])({
+        position: "absolute",
+        zIndex: 1,
+        top: -30,
+        left: 0,
+        right: 0,
+        margin: "0 auto"
+    });
+    var StyledBox = styles_1.styled(Box_1["default"])({
         position: "absolute",
         zIndex: 1,
         top: -30,
@@ -25,8 +33,8 @@ function TotalBar(props) {
             react_1["default"].createElement(Toolbar_1["default"], null,
                 react_1["default"].createElement(IconButton_1["default"], { color: "inherit", "aria-label": "open drawer" },
                     react_1["default"].createElement(Menu_1["default"], null)),
-                react_1["default"].createElement(StyledFab, { color: "secondary", "aria-label": "add" },
-                    react_1["default"].createElement(Add_1["default"], null)),
+                react_1["default"].createElement(StyledBox, { color: "secondary", "aria-label": "add" },
+                    react_1["default"].createElement(AddMenu_1["default"], null)),
                 react_1["default"].createElement(Box_1["default"], { sx: { flexGrow: 1 } }),
                 react_1["default"].createElement(Typography_1["default"], { variant: "h6", color: "inherit", align: "right" },
                     "Total: \u00A3",
